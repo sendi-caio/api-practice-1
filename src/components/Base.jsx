@@ -5,12 +5,18 @@ import {
   Route,
 } from 'react-router-dom'
 
+import Home from '../screens/Home'
+import Login from '../screens/Login'
+
 function Base() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
-          Root
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </Router>
