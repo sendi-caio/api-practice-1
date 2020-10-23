@@ -12,8 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hookform/resolvers": "^1.0.0",
+    "joi": "^17.2.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-hook-form": "^6.9.5",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
