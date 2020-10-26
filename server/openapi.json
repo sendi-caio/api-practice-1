@@ -27,7 +27,9 @@
   "paths": {
     "/posts": {
       "get": {
-        "tags": ["posts"],
+        "tags": [
+          "posts"
+        ],
         "description": "get posts",
         "responses": {
           "default": {
@@ -38,7 +40,9 @@
     },
     "/posts/{postId}/comments": {
       "get": {
-        "tags": ["comments"],
+        "tags": [
+          "comments"
+        ],
         "description": "get comments",
         "responses": {
           "default": {
@@ -59,7 +63,9 @@
     },
     "/register": {
       "post": {
-        "tags": ["register"],
+        "tags": [
+          "register"
+        ],
         "description": "Registrasi User Baru",
         "requestBody": {
           "content": {
@@ -100,7 +106,9 @@
     },
     "/login": {
       "post": {
-        "tags": ["login"],
+        "tags": [
+          "login"
+        ],
         "description": "Registrasi User Baru",
         "requestBody": {
           "content": {
