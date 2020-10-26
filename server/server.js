@@ -16,7 +16,7 @@ server.db = router.db
 
 const rules = auth.rewriter({
   users: 600,
-  posts: 640,
+  posts: 660,
 })
 
 const swaggerPath = swaggerDist.absolutePath()
@@ -34,12 +34,12 @@ server.use(express.static(__dirname))
 server.use(middlewares)
 server.use(rules)
 server.use(auth)
-server.use('/api/v1', router)
+server.use('/v1', router)
 
 server.listen(config.port, () => {
   console.log(`API Server Is Running At ${config.port}`)
   browserSync({
-    files: ['.'],
+    files: ['./openapi.json', './server.js'],
     port: config.port + 1,
     proxy: `http://localhost:${config.port}`,
     ui: false,

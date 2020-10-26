@@ -10,6 +10,15 @@
       "url": "http://localhost:3000/v1"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
   "tags": [
     {
       "name": "posts"
@@ -34,6 +43,38 @@
         "responses": {
           "default": {
             "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "posts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "posts created"
           }
         }
       }
