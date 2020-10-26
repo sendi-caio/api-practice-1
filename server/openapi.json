@@ -1,0 +1,143 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Talent Dig React",
+    "version": "1.0",
+    "description": "learn API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "posts"
+    },
+    {
+      "name": "comments"
+    },
+    {
+      "name": "register"
+    },
+    {
+      "name": "login"
+    }
+  ],
+  "paths": {
+    "/posts": {
+      "get": {
+        "tags": ["posts"],
+        "description": "get posts",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/posts/{postId}/comments": {
+      "get": {
+        "tags": ["comments"],
+        "description": "get comments",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "name": "postId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": ["register"],
+        "description": "Registrasi User Baru",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "registrasi user sukses"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["login"],
+        "description": "Registrasi User Baru",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "registrasi user sukses"
+          }
+        }
+      }
+    }
+  }
+}

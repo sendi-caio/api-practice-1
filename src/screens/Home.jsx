@@ -1,7 +1,11 @@
 import React from 'react'
-
+import CreatePosts from '../components/form/CreatePosts'
 function Home() {
-  return <div>Home</div>
+  return (
+    <div>
+      <CreatePosts />
+    </div>
+  )
 }
 
 export default Home

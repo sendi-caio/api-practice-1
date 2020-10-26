@@ -1,3 +1,4 @@
+import 'react-app-polyfill/stable'
 import ReactDom from 'react-dom'
 import React, { StrictMode } from 'react'
 import App from './components/App'
