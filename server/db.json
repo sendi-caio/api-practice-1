@@ -1,14 +1,9 @@
 {
   "users": [
     {
-      "email": "email@yahoo.com",
-      "password": "$2a$10$avtsACROtSleuivJLj1B/OTPqFt48lYz2b5rz/jK9MMKapygCd/m6",
+      "email": "name@name.net",
+      "password": "$2a$10$omIvu12VCvNlBPWp2UFDKOv1JmSNL3NeUt1tbtka8wlcpHog/XyNG",
       "id": 1
-    },
-    {
-      "email": "email@test.net",
-      "password": "$2a$10$AOp3LK3ZULJ92Bl.NVf3s.InyzejXA4wFZkFUGi5hd/IiAIec6vgu",
-      "id": 2
     }
   ],
   "posts": []

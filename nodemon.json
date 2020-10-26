@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "ignore": [
+    "server/db.json",
+    "node_modules"
+  ],
+  "watch": false
+}
