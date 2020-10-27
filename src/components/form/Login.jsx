@@ -2,13 +2,25 @@
 
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { loginUser } from '../../services/api'
 
 function Login() {
   const { register, handleSubmit } = useForm()
+  const dispatch = useDispatch()
+
+  function callLoginUser(data) {
+    loginUser(data).then(
+      (isLogin) => {
+        if (isLogin) {
+          dispatch({ type: 'loggedIn' })
+        }
+      },
+    )
+  }
 
   return (
-    <form onSubmit={handleSubmit(loginUser)}>
+    <form onSubmit={handleSubmit(callLoginUser)}>
       <div>
         <label>Email</label>
         <input type="text" name="email" ref={register} />

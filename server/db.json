@@ -1,40 +1,15 @@
 {
   "users": [
     {
-      "email": "name@name.net",
-      "password": "$2a$10$omIvu12VCvNlBPWp2UFDKOv1JmSNL3NeUt1tbtka8wlcpHog/XyNG",
+      "email": "email@test.net",
+      "password": "$2a$10$fkxXuj4FwiHKcvSW556CHeFoiqG8NZBq4MCTvxUjaKKFFOuWJ.4Wa",
       "id": 1
-    },
-    {
-      "email": "mail@mail.org",
-      "password": "$2a$10$Stx/G2ZY2V3xRLVMX1knweb6Cd.fUyQ7Ar32H3SqnDn6Iyr0WuVPy",
-      "id": 2
-    },
-    {
-      "email": "myemail@domain.net",
-      "password": "$2a$10$d0t9uoepSLTLeVgQ3Qu5w.Wc7/0RezgE60.hSvNuN3AJS7IgZ2IOm",
-      "id": 3
-    },
-    {
-      "email": "tester@email.net",
-      "password": "$2a$10$MzJVdps6w7OFs5acM4tWCehy1jI3X28/KCLT168dCUUGRfUlK0V9G",
-      "id": 4
-    },
-    {
-      "email": "tester@tester.net",
-      "password": "$2a$10$Aj9oNIM/KI5LeQkuKgWjgOB9fdeizMofcxVbbuDjoR.Sw48LSZoVO",
-      "id": 5
-    },
-    {
-      "email": "user@mail.net",
-      "password": "$2a$10$iuGH6MRPqw5pZT81jCz3PO6YGch61qTEtyQhnxqCcyOFNoZc9.ukC",
-      "id": 6
     }
   ],
   "posts": [
     {
-      "title": "book title",
-      "author": "book author",
+      "title": "title 1",
+      "author": "author 1",
       "id": 1
     }
   ]

@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import ButtonLogOut from './ButtonLogOut'
 
 const styling = {
   position: 'fixed',
@@ -8,11 +10,13 @@ const styling = {
 }
 
 function HelperNavigation() {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
   return (
     <nav style={styling}>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
+      {/* { !isLoggedIn && <Link to="/">Home</Link> } */}
+      { !isLoggedIn && <Link to="/login">Login</Link> }
+      { !isLoggedIn && <Link to="/register">Register</Link> }
+      { isLoggedIn && <ButtonLogOut /> }
     </nav>
   )
 }
