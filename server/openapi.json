@@ -23,6 +23,32 @@
         "type": "string",
         "format": "email"
       },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "$ref": "#/components/schemas/TaskList"
+            }
+          }
+        }
+      },
+      "TaskList": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "done": {
+            "type": "boolean"
+          }
+        }
+      },
       "Password": {
         "type": "string",
         "minimum": 4,
@@ -83,6 +109,30 @@
     }
   ],
   "paths": {
+    "/task": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/task-list": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/posts": {
       "get": {
         "tags": [

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-function ButtonLogOut() {
+function ButtonLogOut(props) {
   const dispatch = useDispatch()
 
   function handleLogOut() {
@@ -9,7 +9,7 @@ function ButtonLogOut() {
   }
 
   return (
-    <button type="button" onClick={handleLogOut}>
+    <button type="button" onClick={handleLogOut} {...props}>
       Log Out
     </button>
   )

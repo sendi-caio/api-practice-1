@@ -1,25 +1,43 @@
-/* eslint-disable jsx-a11y/label-has-for */
-
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { registerUser } from '../../services/api'
+import { joiResolver } from '@hookform/resolvers/joi'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-function Register() {
-  const { register, handleSubmit } = useForm()
+import schema from '../../validations/login'
+
+import { registerUser } from '../../services/api'
+import TextInput from '../input/Text'
+import PasswordInput from '../input/Password'
+import Card from '../Card'
+import Button from '../button/Button'
+
+function Login() {
+  const { register, handleSubmit, errors } = useForm({
+    resolver: joiResolver(schema),
+  })
+  const dispatch = useDispatch()
+
+  function callLoginUser(data) {
+    registerUser(data).then(
+      (isLogin) => {
+        if (isLogin) {
+          dispatch({ type: 'loggedIn' })
+        }
+      },
+    )
+  }
 
   return (
-    <form onSubmit={handleSubmit(registerUser)}>
-      <div>
-        <label>Email</label>
-        <input type="text" name="email" ref={register} />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="text" name="password" ref={register} />
-      </div>
-      <button type="submit">Register</button>
-    </form>
+    <Card title="Register">
+      <form onSubmit={handleSubmit(callLoginUser)}>
+        <TextInput label="Email" name="email" inputRef={register} error={errors.email && errors.email.message} />
+        <PasswordInput label="Password" name="password" type="password" inputRef={register} error={errors.password && errors.password.message} />
+        <Button submit block color="primary">Register</Button>
+        <Link to="/login" className="btn btn-secondary btn-block">Login</Link>
+      </form>
+    </Card>
   )
 }
 
-export default Register
+export default Login

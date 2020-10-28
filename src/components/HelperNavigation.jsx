@@ -1,22 +1,35 @@
-import React from 'react'
+import React, { useState, Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import ButtonLogOut from './ButtonLogOut'
 
 const styling = {
   position: 'fixed',
   bottom: '10px',
   right: '10px',
+  minWidth: '100px',
 }
 
+const links = [
+  ['/', 'Home'],
+  ['/login', 'Login'],
+  ['/register', 'Register'],
+]
+
 function HelperNavigation() {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+  const [show, setShow] = useState(true)
   return (
-    <nav style={styling}>
-      {/* { !isLoggedIn && <Link to="/">Home</Link> } */}
-      { !isLoggedIn && <Link to="/login">Login</Link> }
-      { !isLoggedIn && <Link to="/register">Register</Link> }
-      { isLoggedIn && <ButtonLogOut /> }
+    <nav style={styling} className="list-group">
+      {show && (
+        <Fragment>
+          {
+            links.map(([to, title]) => (
+              <Link key={to} to={to} className="list-group-item">{title}</Link>
+            ))
+          }
+          <ButtonLogOut className="list-group-item" />
+        </Fragment>
+      )}
+      <button type="button" className="list-group-item active" onClick={() => setShow(!show)}>Show</button>
     </nav>
   )
 }

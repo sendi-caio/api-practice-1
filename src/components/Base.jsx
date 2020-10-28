@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 import HelperNavigation from './HelperNavigation'
-import Secured from './Secured'
+import RedirectLogout from './RedirectLogout'
 import RedirectLogin from './RedirectLogin'
 
 import Home from '../screens/Home'
@@ -14,14 +14,13 @@ import Login from '../screens/Login'
 import Register from '../screens/Register'
 
 function Base() {
-  // const isLogin = true
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <Secured>
+          <RedirectLogout>
             <Home />
-          </Secured>
+          </RedirectLogout>
         </Route>
         <Route path="/login">
           <RedirectLogin>
