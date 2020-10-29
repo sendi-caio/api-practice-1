@@ -16,7 +16,7 @@ const links = [
 ]
 
 function HelperNavigation() {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   return (
     <nav style={styling} className="list-group">
       {show && (

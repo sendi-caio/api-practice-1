@@ -1,9 +1,9 @@
 import 'react-app-polyfill/stable'
 import ReactDom from 'react-dom'
-import React, { StrictMode } from 'react'
+import React from 'react'
 import App from './components/App'
 
 ReactDom.render(
-  <StrictMode><App /></StrictMode>,
+  <App />,
   document.getElementById('root'),
 )

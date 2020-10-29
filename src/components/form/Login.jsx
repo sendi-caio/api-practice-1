@@ -32,7 +32,13 @@ function Login() {
     <Card title="Login">
       <form onSubmit={handleSubmit(callLoginUser)}>
         <TextInput label="Email" name="email" inputRef={register} error={errors.email && errors.email.message} />
-        <PasswordInput label="Password" name="password" type="password" inputRef={register} error={errors.password && errors.password.message} />
+        <PasswordInput
+          label="Password"
+          name="password"
+          type="password"
+          inputRef={register}
+          error={errors.password && errors.password.message}
+        />
         <Button submit block color="primary">Login</Button>
         <Link to="/register" className="btn btn-secondary btn-block">Register</Link>
       </form>

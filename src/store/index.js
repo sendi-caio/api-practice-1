@@ -1,12 +1,8 @@
-import { combineReducers, createStore } from 'redux'
+import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'localforage'
 
-import authReducer from './authReducer'
-
-const rootReducer = combineReducers({
-  auth: authReducer,
-})
+import rootReducer from './reducers'
 
 const persistConfig = {
   key: 'root',
@@ -21,6 +17,16 @@ const store = createStore(
 )
 
 const persistor = persistStore(store)
+
+if (module.hot) {
+  console.log('test')
+  module.hot.accept('./reducers', () => {
+    const nextRootReducer = require('./reducers').default
+    store.replaceReducer(
+      persistReducer(persistConfig, nextRootReducer),
+    )
+  })
+}
 
 export {
   store,
