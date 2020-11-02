@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { createPost } from '../../services/api'
 import TextInput from '../input/Text'
+import CheckboxInput from '../input/Checkbox'
 import Button from '../button/Button'
 import schema from '../../validations/posts.js'
 
@@ -21,6 +22,7 @@ function CreatePost() {
     <form onSubmit={handleSubmit(callCreatePost)}>
       <TextInput label="Title" name="title" inputRef={register} error={errors.title && errors.title.message} />
       <TextInput label="Author" name="author" inputRef={register} error={errors.author && errors.author.message} />
+      <CheckboxInput label="Done" name="done" inputRef={register} />
       <Button submit color="primary">CreatePost</Button>
     </form>
   )

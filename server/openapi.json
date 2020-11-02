@@ -23,7 +23,7 @@
         "type": "string",
         "format": "email"
       },
-      "Task": {
+      "TaskList": {
         "type": "object",
         "properties": {
           "title": {
@@ -38,7 +38,7 @@
           }
         }
       },
-      "TaskList": {
+      "TaskItem": {
         "type": "object",
         "properties": {
           "title": {
@@ -100,12 +100,12 @@
       "description": "comments"
     },
     {
-      "name": "register",
+      "name": "auth",
       "description": "register"
     },
     {
-      "name": "login",
-      "description": "login"
+      "name": "task",
+      "description": "task"
     }
   ],
   "paths": {
@@ -197,7 +197,7 @@
     "/register": {
       "post": {
         "tags": [
-          "register"
+          "auth"
         ],
         "description": "Registrasi User Baru",
         "requestBody": {
@@ -224,7 +224,7 @@
     "/login": {
       "post": {
         "tags": [
-          "login"
+          "auth"
         ],
         "description": "Registrasi User Baru",
         "requestBody": {
