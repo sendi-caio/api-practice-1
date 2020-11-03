@@ -2,9 +2,6 @@ const initialState = {
   activeTheme: 'yeti',
   themes: [
     'cosmo',
-    'journal',
-    'materia',
-    'slate',
     'yeti',
     'solar',
   ],

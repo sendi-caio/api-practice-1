@@ -6,12 +6,19 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import { createPost } from '../../services/api'
 import TextInput from '../input/Text'
 import CheckboxInput from '../input/Checkbox'
+import RadioInput from '../input/Radio'
 import Button from '../button/Button'
 import schema from '../../validations/posts.js'
 
 function CreatePost() {
   const { register, handleSubmit, errors } = useForm({
     resolver: joiResolver(schema),
+    defaultValues: {
+      title: '',
+      author: '',
+      done: null,
+      gender: '',
+    },
   })
 
   function callCreatePost(data) {
@@ -23,6 +30,7 @@ function CreatePost() {
       <TextInput label="Title" name="title" inputRef={register} error={errors.title && errors.title.message} />
       <TextInput label="Author" name="author" inputRef={register} error={errors.author && errors.author.message} />
       <CheckboxInput label="Done" name="done" inputRef={register} />
+      <RadioInput name="gender" inputRef={register} items={[['l', 'l', 'L'], ['p', 'p', 'P']]} inline />
       <Button submit color="primary">CreatePost</Button>
     </form>
   )
