@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 
 function Radio(props) {
-  const { name, items, inline, inputRef } = props
+  const { name, items, inline, inputRef, error } = props
   const formCheckClasses = clsx('form-check', inline && 'form-check-inline')
   return (
     <div className="form-group">
@@ -12,6 +12,11 @@ function Radio(props) {
           <label className="form-check-label" htmlFor={id}>{ label }</label>
         </div>
       ))}
+      <small
+        className="form-text text-muted"
+      >
+        { error || '\u00A0' }
+      </small>
     </div>
   )
 }

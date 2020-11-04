@@ -9,7 +9,6 @@ function logIn(token) {
 }
 
 function getToken() {
-  console.log('di panggil')
   return Cookies.get('token')
 }
 

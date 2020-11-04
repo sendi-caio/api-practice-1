@@ -15,6 +15,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /[\\/]node_modules[\\/](react-router|react-router-dom|sockjs-client)[\\/].+\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {

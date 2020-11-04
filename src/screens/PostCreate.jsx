@@ -1,11 +1,13 @@
 import React from 'react'
 import DashboardLayout from '../layouts/Dashboard'
-function Home() {
+import CreatePosts from '../components/form/CreatePosts'
+
+function PostsList() {
   return (
     <DashboardLayout>
-      [HOME]
+      <CreatePosts />
     </DashboardLayout>
   )
 }
 
-export default Home
+export default PostsList

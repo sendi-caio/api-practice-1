@@ -16,6 +16,7 @@ function ThemesSelect() {
         {
           themes.map((theme) => (
             <button
+              key={theme}
               className={clsx('dropdown-item', 'btn-sm', (activeTheme === theme) && 'active')}
               type="button"
               onClick={() => dispatch({

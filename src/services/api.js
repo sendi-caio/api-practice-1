@@ -27,11 +27,28 @@ export async function loginUser(params) {
   )
 }
 
+const configWithHeaders = {
+  headers: {
+    Authorization: `Bearer ${user.getToken()}`,
+  },
+}
+
 export function createPost(params) {
-  console.log(user.getToken())
-  return api.post('/posts', params, {
-    headers: {
-      Authorization: `Bearer ${user.getToken()}`,
-    },
-  })
+  return api.post('/posts', params, configWithHeaders)
+}
+
+export function getPost() {
+  return api.get('/posts', configWithHeaders)
+}
+
+export function getPostById(postId) {
+  return api.get(`/posts/${postId}`, configWithHeaders)
+}
+
+export function updatePost(postId, params) {
+  return api.put(`/posts/${postId}`, params, configWithHeaders)
+}
+
+export function deletePost(postId) {
+  return api.delete(`/posts/${postId}`, configWithHeaders)
 }

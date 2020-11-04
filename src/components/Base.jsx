@@ -13,6 +13,9 @@ import Themes from './Themes'
 import Home from '../screens/Home'
 import Login from '../screens/Login'
 import Register from '../screens/Register'
+import PostsList from '../screens/PostsList'
+import PostCreate from '../screens/PostCreate'
+import PostDetail from '../screens/PostDetail'
 
 function Base() {
   return (
@@ -33,6 +36,21 @@ function Base() {
             <RedirectLogin>
               <Register />
             </RedirectLogin>
+          </Route>
+          <Route exact path="/posts">
+            <RedirectLogout>
+              <PostsList />
+            </RedirectLogout>
+          </Route>
+          <Route exact path="/posts/create">
+            <RedirectLogout>
+              <PostCreate />
+            </RedirectLogout>
+          </Route>
+          <Route exact path="/posts/:postId">
+            <RedirectLogout>
+              <PostDetail />
+            </RedirectLogout>
           </Route>
         </Switch>
         <HelperNavigation />

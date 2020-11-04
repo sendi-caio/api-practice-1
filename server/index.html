@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>API</title>
     <link rel="stylesheet" type="text/css" href="/swagger-ui.css">
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.36.0/swagger-ui.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.36.1/swagger-ui.min.css"> -->
     <style>
       html {
         box-sizing: border-box;
@@ -32,6 +32,7 @@
         const ui = SwaggerUIBundle({
           url: "http://127.0.0.1:3001/openapi.json",
           dom_id: '#swagger-ui',
+          docExpansion: 'list',
           deepLinking: true,
           presets: [
             SwaggerUIBundle.presets.apis

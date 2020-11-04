@@ -1,29 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import clsx from 'clsx'
 import ThemesSelect from './ThemesSelect'
 
+const links = [
+  ['/', 'Home'],
+  ['/login', 'Login'],
+  ['/register', 'Register'],
+  ['/posts', 'Posts List'],
+  ['/posts/create', 'Create New Posts'],
+]
+
 function Bar(props) {
+  const location = useLocation()
+  const [show, setShow] = useState(false)
   const { title } = props
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <button className={clsx('navbar-toggler', show && 'collapsed')} type="button" onClick={() => setShow(!show)}>
         <span className="navbar-toggler-icon" />
       </button>
-      { title && <a className="navbar-brand" href="#">{ title }</a> }
+      { title && <a className="navbar-brand">{title}</a>}
 
-      <div className="collapse navbar-collapse">
+      <div className={clsx('collapse', 'navbar-collapse', show && 'show')}>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Home
-              <span className="sr-only">(current)</span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">Link</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link disabled" href="#">Disabled</a>
-          </li>
+          {
+            links.map(([to, linkTitle]) => (
+              <li key={to} className={clsx('nav-item', location.pathname === to && 'active')}>
+                <Link className="nav-link" to={to}>
+                  {linkTitle}
+                </Link>
+              </li>
+            ))
+          }
         </ul>
       </div>
       <ThemesSelect />

@@ -32,6 +32,15 @@ server.use('/swagger-ui-standalone-preset.js', express.static(path.join(swaggerP
 server.use('/openapi.json', express.static(path.join(__dirname, 'openapi.json')))
 server.use(express.static(__dirname))
 server.use(middlewares)
+
+server.use(jsonServer.bodyParser)
+server.put('/v1/task-item/rename/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10)
+  const post = server.db.get('posts').getById(id)
+  if (!post) res.status(404).send()
+  res.json(post.value())
+})
+
 server.use(rules)
 server.use(auth)
 server.use('/v1', router)

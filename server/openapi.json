@@ -18,10 +18,64 @@
         "bearerFormat": "JWT"
       }
     },
+    "parameters": {
+      "id": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/id"
+        }
+      }
+    },
+    "requestBodies": {
+      "Auth": {
+        "required": true,
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "#/components/schemas/Auth"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Auth"
+            }
+          }
+        }
+      },
+      "Post": {
+        "required": true,
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "#/components/schemas/Post"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Post"
+            }
+          }
+        }
+      }
+    },
     "schemas": {
-      "Email": {
+      "email": {
         "type": "string",
         "format": "email"
+      },
+      "id": {
+        "type": "string",
+        "format": "number"
+      },
+      "password": {
+        "type": "string",
+        "minimum": 4,
+        "maximum": 8
+      },
+      "name": {
+        "type": "string"
       },
       "TaskList": {
         "type": "object",
@@ -49,11 +103,6 @@
           }
         }
       },
-      "Password": {
-        "type": "string",
-        "minimum": 4,
-        "maximum": 8
-      },
       "Post": {
         "type": "object",
         "properties": {
@@ -69,28 +118,31 @@
         "type": "object",
         "properties": {
           "email": {
-            "$ref": "#/components/schemas/Email"
+            "$ref": "#/components/schemas/email"
           },
           "password": {
-            "$ref": "#/components/schemas/Password"
+            "$ref": "#/components/schemas/password"
           }
         }
       },
-      "Register": {
+      "Auth": {
         "type": "object",
         "properties": {
           "email": {
-            "type": "string",
-            "format": "email"
+            "$ref": "#/components/schemas/email"
           },
           "password": {
-            "$ref": "#/components/schemas/Password"
+            "$ref": "#/components/schemas/password"
           }
         }
       }
     }
   },
   "tags": [
+    {
+      "name": "auth",
+      "description": "authentication"
+    },
     {
       "name": "posts",
       "description": "posts"
@@ -100,12 +152,12 @@
       "description": "comments"
     },
     {
-      "name": "auth",
-      "description": "register"
-    },
-    {
       "name": "task",
       "description": "task"
+    },
+    {
+      "name": "task-item",
+      "description": "task item"
     }
   ],
   "paths": {
@@ -119,10 +171,8 @@
             "description": ""
           }
         }
-      }
-    },
-    "/task-list": {
-      "get": {
+      },
+      "post": {
         "tags": [
           "task"
         ],
@@ -133,6 +183,84 @@
         }
       }
     },
+    "/task/{id}": {
+      "delete": {
+        "tags": [
+          "task"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/task-item": {
+      "post": {
+        "tags": [
+          "task-item"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/task-item/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/id"
+        }
+      ],
+      "get": {
+        "tags": [
+          "task-item"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "task-item"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "task-item"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/task-item/rename/{id}": {
+      "put": {
+        "tags": [
+          "task-item"
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/id"
+          }
+        ]
+      }
+    },
     "/posts": {
       "get": {
         "tags": [
@@ -141,7 +269,7 @@
         "description": "get posts",
         "responses": {
           "default": {
-            "description": ""
+            "description": "get all posts"
           }
         }
       },
@@ -155,13 +283,7 @@
           }
         ],
         "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Post"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Post"
         },
         "responses": {
           "201": {
@@ -170,7 +292,44 @@
         }
       }
     },
-    "/posts/{postId}/comments": {
+    "/posts/{id}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/id"
+        }
+      ],
+      "get": {
+        "tags": [
+          "posts"
+        ],
+        "responses": {
+          "201": {
+            "description": "posts created"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "posts"
+        ],
+        "responses": {
+          "201": {
+            "description": "posts created"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "posts"
+        ],
+        "responses": {
+          "201": {
+            "description": "posts created"
+          }
+        }
+      }
+    },
+    "/posts/{id}/comments": {
       "get": {
         "tags": [
           "comments"
@@ -183,13 +342,7 @@
         },
         "parameters": [
           {
-            "name": "postId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "format": "number"
-            }
+            "$ref": "#/components/parameters/id"
           }
         ]
       }
@@ -201,18 +354,7 @@
         ],
         "description": "Registrasi User Baru",
         "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Register"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Register"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Auth"
         },
         "responses": {
           "201": {
@@ -228,18 +370,7 @@
         ],
         "description": "Registrasi User Baru",
         "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "$ref": "#/components/schemas/Login"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Login"
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/Auth"
         },
         "responses": {
           "201": {
