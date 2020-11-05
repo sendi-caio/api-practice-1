@@ -28,6 +28,9 @@
         }
       }
     },
+    "headers": {},
+    "examples": {},
+    "links": {},
     "requestBodies": {
       "Auth": {
         "required": true,
@@ -74,10 +77,13 @@
         "minimum": 4,
         "maximum": 8
       },
+      "title": {
+        "type": "string"
+      },
       "name": {
         "type": "string"
       },
-      "TaskList": {
+      "Task": {
         "type": "object",
         "properties": {
           "title": {
@@ -185,6 +191,11 @@
     },
     "/task/{id}": {
       "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "task"
         ],
@@ -197,6 +208,11 @@
     },
     "/task-item": {
       "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "task-item"
         ],
@@ -263,6 +279,11 @@
     },
     "/posts": {
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "posts"
         ],
@@ -299,6 +320,11 @@
         }
       ],
       "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "posts"
         ],
@@ -309,6 +335,11 @@
         }
       },
       "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "posts"
         ],
@@ -319,6 +350,11 @@
         }
       },
       "delete": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "posts"
         ],
@@ -349,6 +385,11 @@
     },
     "/register": {
       "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "auth"
         ],

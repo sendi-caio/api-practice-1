@@ -8,6 +8,7 @@ const links = [
   ['/login', 'Login'],
   ['/register', 'Register'],
   ['/posts', 'Posts List'],
+  ['/paginated-posts', 'Paginated Posts List'],
   ['/posts/create', 'Create New Posts'],
 ]
 
