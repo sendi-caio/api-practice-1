@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-param-reassign */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable import/prefer-default-export */
 
@@ -9,16 +11,14 @@ const domain = 'localhost'
 const port = 3000
 
 const config = {
-  baseURL: `http://${domain}:${port}/v1`,
+  baseURL: `http://${domain}:${port}`,
 }
 const api = Axios.create(config)
 
+const notSecuredEndPoint = ['/signin', '/login', '/register']
+
 api.interceptors.response.use(
-  (response) => {
-    // if (response.config.url === '/posts') console.log({ response })
-    console.log(response)
-    return response
-  },
+  (response) => response,
   (error) => {
     //
     if (error && error.response && error.response.status) {
@@ -34,7 +34,7 @@ api.interceptors.response.use(
 
 api.interceptors.request.use(
   (reqConfig) => {
-    if (!['/signin', '/login', '/register'].includes(reqConfig.url)) {
+    if (!notSecuredEndPoint.includes(reqConfig.url)) {
       if (!user.isLogin()) {
         store.dispatch({ type: 'loggedOut' })
         throw new Axios.Cancel('Operation canceled by the user.')
@@ -45,6 +45,15 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 )
 
+api.interceptors.request.use(
+  (reqConfig) => {
+    if (!notSecuredEndPoint.includes(reqConfig.url)) {
+      reqConfig.headers.common.Authorization = `Bearer ${user.getToken()}`
+    }
+    return reqConfig
+  },
+)
+
 export function registerUser(params) {
   return api.post('/register', params)
 }
@@ -53,7 +62,6 @@ export async function loginUser(params) {
   return api.post('/signin', params).then(
     (response) => {
       const { data } = response
-      // Cookies.set('token', data.accessToken)
       user.logIn(data.accessToken)
       return true
     },
@@ -61,14 +69,8 @@ export async function loginUser(params) {
   )
 }
 
-const configWithHeaders = {
-  headers: {
-    Authorization: `Bearer ${user.getToken()}`,
-  },
-}
-
 export function createPost(params) {
-  return api.post('/posts', params, configWithHeaders)
+  return api.post('/posts', params)
 }
 
 export function getPost() {
@@ -76,17 +78,17 @@ export function getPost() {
 }
 
 export function getPaginatedPost(page, perPage) {
-  return api.get(`/posts?_limit=${perPage}&_page=${page}`, configWithHeaders)
+  return api.get(`/posts?_limit=${perPage}&_page=${page}`)
 }
 
 export function getPostById(postId) {
-  return api.get(`/posts/${postId}`, configWithHeaders)
+  return api.get(`/posts/${postId}`)
 }
 
 export function updatePost(postId, params) {
-  return api.put(`/posts/${postId}`, params, configWithHeaders)
+  return api.put(`/posts/${postId}`, params)
 }
 
 export function deletePost(postId) {
-  return api.delete(`/posts/${postId}`, configWithHeaders)
+  return api.delete(`/posts/${postId}`)
 }

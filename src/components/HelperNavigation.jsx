@@ -13,6 +13,7 @@ const links = [
   ['/', 'Home'],
   ['/login', 'Login'],
   ['/register', 'Register'],
+  ['/additional', 'Additional'],
 ]
 
 function HelperNavigation() {

@@ -18,6 +18,7 @@ import PostsList from '../screens/PostsList'
 import PaginatedPostsList from '../screens/PaginatedPostsList'
 import PostCreate from '../screens/PostCreate'
 import PostDetail from '../screens/PostDetail'
+import Additional from '../screens/Additional'
 
 function Base() {
   return (
@@ -63,6 +64,9 @@ function Base() {
             <RedirectLogout>
               <PostDetail />
             </RedirectLogout>
+          </Route>
+          <Route exact path="/additional">
+            <Additional />
           </Route>
         </Switch>
         <HelperNavigation />

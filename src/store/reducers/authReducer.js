@@ -1,5 +1,5 @@
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
 }
 function authReducer(state = initialState, action) {
   switch (action.type) {

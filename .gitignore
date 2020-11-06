@@ -1,2 +1,4 @@
+/server/public/*
 /node_modules
 /dist
+!.gitkeep

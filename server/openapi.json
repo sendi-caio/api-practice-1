@@ -167,7 +167,7 @@
     }
   ],
   "paths": {
-    "/task": {
+    "/tasks": {
       "get": {
         "tags": [
           "task"
@@ -189,7 +189,7 @@
         }
       }
     },
-    "/task/{id}": {
+    "/tasks/{id}": {
       "delete": {
         "security": [
           {
@@ -206,7 +206,7 @@
         }
       }
     },
-    "/task-item": {
+    "/tasks-items": {
       "post": {
         "security": [
           {
@@ -223,7 +223,7 @@
         }
       }
     },
-    "/task-item/{id}": {
+    "/tasks-items/{id}": {
       "parameters": [
         {
           "$ref": "#/components/parameters/id"
@@ -260,8 +260,13 @@
         }
       }
     },
-    "/task-item/rename/{id}": {
+    "/tasks-items/rename/{id}": {
       "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "tags": [
           "task-item"
         ],
@@ -385,11 +390,6 @@
     },
     "/register": {
       "post": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
         "tags": [
           "auth"
         ],

@@ -1,12 +1,12 @@
 import React from 'react'
 import LoginForm from '../components/form/Login'
-import CenterVHLayout from '../layouts/CenterVH'
+import AuthLayout from '../layouts/Auth'
 
 function Login() {
   return (
-    <CenterVHLayout style={{ maxWidth: '500px' }}>
+    <AuthLayout>
       <LoginForm />
-    </CenterVHLayout>
+    </AuthLayout>
   )
 }
 

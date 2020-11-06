@@ -1,58 +1,56 @@
-import express from 'express'
 import path from 'path'
-import swaggerDist from 'swagger-ui-dist'
+import fileUpload from 'express-fileupload'
 import jsonServer from 'json-server'
 import auth from 'json-server-auth'
-import browserSync from 'browser-sync'
-import cors from 'cors'
+import swaggerDist from 'swagger-ui-dist'
 
-const config = require('./config')
+import config from './config'
 
-const server = express()
+// const server = express()
+const server = jsonServer.create()
+server.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024 },
+}))
+server.use(jsonServer.bodyParser)
 const router = jsonServer.router('./server/db.json')
 const middlewares = jsonServer.defaults()
-
-server.db = router.db
-
-const rules = auth.rewriter({
-  users: 600,
-  posts: 660,
-})
-
 const swaggerPath = swaggerDist.absolutePath()
 
-server.use(cors({
-  origin: '*',
-}))
+server.get('/swagger-ui.css', (req, res) => res.sendFile(path.join(swaggerPath, 'swagger-ui.css')))
+server.get('/swagger-ui.css.map', (req, res) => res.sendFile(path.join(swaggerPath, 'swagger-ui.css.map')))
+server.get('/swagger-ui-bundle.js', (req, res) => res.sendFile(path.join(swaggerPath, 'swagger-ui-bundle.js')))
+server.get('/swagger-ui-bundle.js.map', (req, res) => res.sendFile(path.join(swaggerPath, 'swagger-ui-bundle.js.map')))
 
-server.use('/swagger-ui.css', express.static(path.join(swaggerPath, 'swagger-ui.css')))
-server.use('/swagger-ui-bundle.js', express.static(path.join(swaggerPath, 'swagger-ui-bundle.js')))
-server.use('/swagger-ui-standalone-preset.js', express.static(path.join(swaggerPath, 'swagger-ui-standalone-preset.js')))
-
-server.use('/openapi.json', express.static(path.join(__dirname, 'openapi.json')))
-server.use(express.static(__dirname))
-server.use(middlewares)
-
-server.use(jsonServer.bodyParser)
-server.put('/v1/task-item/rename/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10)
-  const post = server.db.get('posts').getById(id)
-  if (!post) res.status(404).send()
-  res.json(post.value())
+server.db = router.db
+const rules = auth.rewriter({
+  '/v1/users*': '/600/users$1',
+  '/v1/posts*': '/660/posts$1',
+  '/v1/tasks-items/rename*': '/660/tasks-items/rename$1',
+  '/v1/tasks-items*': '/660/tasks-items$1',
+  '/v1/tasks*': '/660/tasks$1',
+  '/v1/register': '/register',
+  '/v1/login': '/login',
 })
+const [compression, cors, , logger, def] = middlewares
 
+server.get('/openapi.json', (req, res) => res.sendFile(path.join(__dirname, 'openapi.json')))
+server.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')))
+
+server.use([compression, cors, logger, def])
 server.use(rules)
 server.use(auth)
-server.use('/v1', router)
-
-server.listen(config.port, () => {
-  console.log(`API Server Is Running At ${config.port}`)
-  browserSync({
-    files: ['./openapi.json', './server.js'],
-    port: config.port + 1,
-    proxy: `http://localhost:${config.port}`,
-    ui: false,
-    online: false,
-    open: false,
-  })
+// custom start
+server.put('/tasks-items/rename/:id', (req, res) => {
+  console.log('test ini berjalan')
+  res.status(201).send('ok')
 })
+
+server.put('/v1/upload', (req, res) => {
+})
+// custom end
+server.use(router)
+
+server.listen(
+  config.port,
+  () => console.log(`API server running at ${config.port}`),
+)

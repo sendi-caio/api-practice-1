@@ -28,16 +28,15 @@
       "id": 7
     },
     {
-      "title": "ubuntu 20",
-      "author": "jokowi",
+      "title": "",
+      "author": "",
       "id": 8
     },
     {
-      "title": "macbook",
-      "author": "joni",
+      "title": "",
+      "author": "",
       "id": 9
     }
   ],
-  "task": [],
-  "task-item": []
+  "tasks": []
 }

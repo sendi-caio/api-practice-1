@@ -29,7 +29,7 @@ function Login() {
   }
 
   return (
-    <Card title="Login">
+    <Card title="Login" style={{ width: '500px' }}>
       <form onSubmit={handleSubmit(callLoginUser)}>
         <TextInput label="Email" name="email" inputRef={register} error={errors.email && errors.email.message} />
         <PasswordInput

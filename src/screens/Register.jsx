@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Helmet } from 'react-helmet'
 import RegisterForm from '../components/form/Register'
-import CenterVHLayout from '../layouts/CenterVH'
+import AuthLayout from '../layouts/Auth'
 
 function Register() {
   return (
@@ -9,9 +9,9 @@ function Register() {
       <Helmet>
         <title>Register</title>
       </Helmet>
-      <CenterVHLayout style={{ maxWidth: '500px' }}>
+      <AuthLayout>
         <RegisterForm />
-      </CenterVHLayout>
+      </AuthLayout>
     </Fragment>
   )
 }
