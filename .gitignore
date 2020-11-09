@@ -1,4 +1,4 @@
-/server/public/*
+/server/uploads/*
 /node_modules
 /dist
 !.gitkeep

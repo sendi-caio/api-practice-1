@@ -14,6 +14,7 @@ const links = [
   ['/login', 'Login'],
   ['/register', 'Register'],
   ['/additional', 'Additional'],
+  ['/media-query', 'MediaQuery'],
 ]
 
 function HelperNavigation() {

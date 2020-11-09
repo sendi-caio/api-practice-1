@@ -1,42 +1,11 @@
 {
   "users": [
     {
-      "email": "email@test.net",
-      "password": "$2a$10$fkxXuj4FwiHKcvSW556CHeFoiqG8NZBq4MCTvxUjaKKFFOuWJ.4Wa",
-      "id": 1
-    },
-    {
-      "email": "user@mail.com",
-      "password": "$2a$10$eV54wgD5LYCem47gujxS.OV5HBcf8D96IqiWXuz9gkC2S2lc/OLLS",
-      "id": 2
-    },
-    {
       "email": "user@email.com",
-      "password": "$2a$10$Uu7ckQ3ZMNuMMLG3n0t3buLVE.neZsLHv0GveU4kIrYMXlYZMiqJa",
-      "id": 3
+      "password": "$2a$10$N8MELoLICmaw14FN5ft3se7lV09AQQ.jJyrWYtMbRRO.U6HDK9MTi",
+      "id": 1
     }
   ],
-  "posts": [
-    {
-      "title": "express",
-      "author": "fakhry",
-      "id": 6
-    },
-    {
-      "title": "react hook",
-      "author": "dan abramove",
-      "id": 7
-    },
-    {
-      "title": "",
-      "author": "",
-      "id": 8
-    },
-    {
-      "title": "",
-      "author": "",
-      "id": 9
-    }
-  ],
+  "posts": [],
   "tasks": []
 }

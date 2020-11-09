@@ -11,7 +11,7 @@ const domain = 'localhost'
 const port = 3000
 
 const config = {
-  baseURL: `http://${domain}:${port}`,
+  baseURL: `http://${domain}:${port}/v1`,
 }
 const api = Axios.create(config)
 
@@ -91,4 +91,15 @@ export function updatePost(postId, params) {
 
 export function deletePost(postId) {
   return api.delete(`/posts/${postId}`)
+}
+
+export function upload(form) {
+  const data = Object.entries(form).reduce((prevValue, currentValue) => {
+    const [name, value] = currentValue
+    const val = value instanceof FileList ? value[0] : value
+    prevValue.append(name, val)
+    return prevValue
+  }, (new FormData()))
+  // data.append(name, file)
+  return api.post('/upload', data)
 }

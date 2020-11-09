@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import clsx from 'clsx'
-import ThemesSelect from './ThemesSelect'
+// import ThemesSelect from './ThemesSelect'
 
 const links = [
   ['/', 'Home'],
@@ -10,6 +10,7 @@ const links = [
   ['/posts', 'Posts List'],
   ['/paginated-posts', 'Paginated Posts List'],
   ['/posts/create', 'Create New Posts'],
+  ['/upload', 'Upload'],
 ]
 
 function Bar(props) {
@@ -36,7 +37,7 @@ function Bar(props) {
           }
         </ul>
       </div>
-      <ThemesSelect />
+      {/* <ThemesSelect /> */}
     </nav>
   )
 }

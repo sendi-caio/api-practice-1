@@ -19,6 +19,8 @@ import PaginatedPostsList from '../screens/PaginatedPostsList'
 import PostCreate from '../screens/PostCreate'
 import PostDetail from '../screens/PostDetail'
 import Additional from '../screens/Additional'
+import MediaQuery from '../screens/MediaQuery'
+import Upload from '../screens/Upload'
 
 function Base() {
   return (
@@ -67,6 +69,12 @@ function Base() {
           </Route>
           <Route exact path="/additional">
             <Additional />
+          </Route>
+          <Route exact path="/upload">
+            <Upload />
+          </Route>
+          <Route exact path="/media-query">
+            <MediaQuery />
           </Route>
         </Switch>
         <HelperNavigation />

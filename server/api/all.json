@@ -32,32 +32,53 @@
     "examples": {},
     "links": {},
     "requestBodies": {
-      "Auth": {
+      "user": {
         "required": true,
         "content": {
-          "application/x-www-form-urlencoded": {
+          "multipart/form-data": {
             "schema": {
-              "$ref": "#/components/schemas/Auth"
-            }
-          },
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Auth"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "$ref": "#/components/schemas/name"
+                },
+                "email": {
+                  "$ref": "#/components/schemas/email"
+                },
+                "avatar": {
+                  "$ref": "#/components/schemas/avatar"
+                }
+              }
             }
           }
         }
       },
-      "Post": {
+      "auth": {
         "required": true,
         "content": {
           "application/x-www-form-urlencoded": {
             "schema": {
-              "$ref": "#/components/schemas/Post"
+              "$ref": "#/components/schemas/auth"
             }
           },
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Post"
+              "$ref": "#/components/schemas/auth"
+            }
+          }
+        }
+      },
+      "post": {
+        "required": true,
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "#/components/schemas/post"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/post"
             }
           }
         }
@@ -83,7 +104,11 @@
       "name": {
         "type": "string"
       },
-      "Task": {
+      "avatar": {
+        "type": "string",
+        "format": "binary"
+      },
+      "task": {
         "type": "object",
         "properties": {
           "title": {
@@ -93,12 +118,12 @@
             "type": "array",
             "items": {
               "type": "object",
-              "$ref": "#/components/schemas/TaskList"
+              "$ref": "#/components/schemas/tasks-item"
             }
           }
         }
       },
-      "TaskItem": {
+      "tasks-item": {
         "type": "object",
         "properties": {
           "title": {
@@ -109,7 +134,7 @@
           }
         }
       },
-      "Post": {
+      "post": {
         "type": "object",
         "properties": {
           "title": {
@@ -120,18 +145,7 @@
           }
         }
       },
-      "Login": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "$ref": "#/components/schemas/email"
-          },
-          "password": {
-            "$ref": "#/components/schemas/password"
-          }
-        }
-      },
-      "Auth": {
+      "auth": {
         "type": "object",
         "properties": {
           "email": {
@@ -147,7 +161,7 @@
   "tags": [
     {
       "name": "auth",
-      "description": "authentication"
+      "description": "auth"
     },
     {
       "name": "posts",
@@ -158,19 +172,23 @@
       "description": "comments"
     },
     {
-      "name": "task",
-      "description": "task"
+      "name": "tasks",
+      "description": "tasks"
     },
     {
-      "name": "task-item",
-      "description": "task item"
+      "name": "tasks-items",
+      "description": "tasks items"
+    },
+    {
+      "name": "users",
+      "description": "users"
     }
   ],
   "paths": {
     "/tasks": {
       "get": {
         "tags": [
-          "task"
+          "tasks"
         ],
         "responses": {
           "default": {
@@ -180,7 +198,7 @@
       },
       "post": {
         "tags": [
-          "task"
+          "tasks"
         ],
         "responses": {
           "default": {
@@ -197,7 +215,7 @@
           }
         ],
         "tags": [
-          "task"
+          "tasks"
         ],
         "responses": {
           "default": {
@@ -214,7 +232,7 @@
           }
         ],
         "tags": [
-          "task-item"
+          "tasks-items"
         ],
         "responses": {
           "default": {
@@ -231,7 +249,7 @@
       ],
       "get": {
         "tags": [
-          "task-item"
+          "tasks-items"
         ],
         "responses": {
           "default": {
@@ -241,7 +259,7 @@
       },
       "put": {
         "tags": [
-          "task-item"
+          "tasks-items"
         ],
         "responses": {
           "default": {
@@ -251,7 +269,7 @@
       },
       "delete": {
         "tags": [
-          "task-item"
+          "tasks-items"
         ],
         "responses": {
           "default": {
@@ -268,7 +286,7 @@
           }
         ],
         "tags": [
-          "task-item"
+          "tasks-items"
         ],
         "responses": {
           "default": {
@@ -309,7 +327,7 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/Post"
+          "$ref": "#/components/requestBodies/post"
         },
         "responses": {
           "201": {
@@ -370,6 +388,36 @@
         }
       }
     },
+    "/upload": {
+      "post": {
+        "tags": [
+          "upload"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "profile": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "posts created"
+          }
+        }
+      }
+    },
     "/posts/{id}/comments": {
       "get": {
         "tags": [
@@ -395,7 +443,7 @@
         ],
         "description": "Registrasi User Baru",
         "requestBody": {
-          "$ref": "#/components/requestBodies/Auth"
+          "$ref": "#/components/requestBodies/auth"
         },
         "responses": {
           "201": {
@@ -411,8 +459,20 @@
         ],
         "description": "Registrasi User Baru",
         "requestBody": {
-          "$ref": "#/components/requestBodies/Auth"
+          "$ref": "#/components/requestBodies/auth"
         },
+        "responses": {
+          "201": {
+            "description": "registrasi user sukses"
+          }
+        }
+      }
+    },
+    "/reset": {
+      "get": {
+        "tags": [
+          "reset"
+        ],
         "responses": {
           "201": {
             "description": "registrasi user sukses"

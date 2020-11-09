@@ -4,5 +4,7 @@
     "server/db.json",
     "node_modules"
   ],
-  "watch": false
+  "watch": [
+    "server/server.js"
+  ]
 }

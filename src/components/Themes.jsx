@@ -8,7 +8,9 @@ function Themes(props) {
     <Fragment>
       <Helmet>
         <title>Home</title>
-        <link rel="stylesheet" href={`https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/${activeTheme}/bootstrap.min.css`} />
+        {
+          false && <link id={`${activeTheme}-theme`} rel="stylesheet" href={`https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/${activeTheme}/bootstrap.min.css`} />
+        }
       </Helmet>
       { children }
     </Fragment>
