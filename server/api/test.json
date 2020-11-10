@@ -111,6 +111,9 @@
       "post": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number"
+          },
           "title": {
             "$ref": "#/components/schemas/title"
           },
@@ -144,10 +147,37 @@
         "tags": [
           "posts"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "_limit",
+            "schema": {
+              "type": "integer",
+              "format": "number"
+            }
+          }
+        ],
         "description": "get posts",
         "responses": {
-          "default": {
-            "description": "get all posts"
+          "200": {
+            "description": "get all posts",
+            "headers": {
+              "X-Total-Count": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/post"
+                  }
+                }
+              }
+            }
           }
         }
       },

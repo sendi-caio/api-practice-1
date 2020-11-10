@@ -6,12 +6,7 @@ function Upload() {
   const { register, handleSubmit } = useForm()
 
   function sendFile(data) {
-    // const name = Object.keys(data) // ['name', 'profile']
-    // const value = Object.values(data) // ['fakkry', FileList]
-
-    upload(data).then(
-      (response) => console.log(response),
-    )
+    upload(data)
   }
 
   return (
@@ -20,7 +15,7 @@ function Upload() {
         <form onSubmit={handleSubmit(sendFile)}>
           <div className="form-group">
             <label htmlFor="profile">Profile</label>
-            <input id="profile" className="form-control-file" type="file" name="profile" ref={register} />
+            <input id="profile" className="form-control-file" type="file" name="avatar" ref={register} />
           </div>
           <div className="form-group">
             <label htmlFor="name">Name</label>

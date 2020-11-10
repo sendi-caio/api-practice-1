@@ -5,17 +5,16 @@ import fileUpload from 'express-fileupload'
 import jsonServer from 'json-server'
 import auth from 'json-server-auth'
 import swaggerDist from 'swagger-ui-dist'
+import favicon from 'serve-favicon'
 // import Cors from 'cors'
 // import browserSync from 'browser-sync'
 // import express from 'express'
 
 import config from './config'
+// import route from './route'
 
-// const cors = Cors({
-//   origin: ['*'],
-//   allowedHeaders: ['*'],
-// })
-
+// const cors = Cors()
+console.log(process.env.SERVER_HOST)
 const server = jsonServer.create()
 server.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
@@ -48,6 +47,7 @@ server.get('/openapi.json', (req, res) => res.sendFile(path.join(__dirname, 'api
 server.get('/auth.json', (req, res) => res.sendFile(path.join(__dirname, 'api', 'auth.json')))
 server.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')))
 
+server.use(favicon(path.join(__dirname, 'favicon.ico')))
 server.use([compression, cors, logger, def])
 server.use(rules)
 server.use(auth)
@@ -57,7 +57,6 @@ server.put('/tasks-items/rename/:id', (req, res) => {
 })
 
 server.post('/upload', (req, res) => {
-  console.log(req.body.name)
   if (!req.files || Object.keys(req.files).length === 0) {
     res.status(400).send('No files were uploaded.')
   }
@@ -70,8 +69,6 @@ server.post('/upload', (req, res) => {
 
 server.get('/upload', (req, res) => res.sendFile(path.join(__dirname, 'uploads', 'file.png')))
 
-server.get('/upload', (req, res) => res.sendFile(path.join(__dirname, 'uploads', 'file.png')))
-
 server.get('/reset', (req, res) => {
   const { db } = server
   db.set('users', []).write()
@@ -80,6 +77,7 @@ server.get('/reset', (req, res) => {
   res.send('reset success')
 })
 // custom end
+// server.get('/route', route(server, router, rules))
 server.use(router)
 
 server.listen(

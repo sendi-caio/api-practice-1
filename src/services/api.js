@@ -94,12 +94,18 @@ export function deletePost(postId) {
 }
 
 export function upload(form) {
-  const data = Object.entries(form).reduce((prevValue, currentValue) => {
-    const [name, value] = currentValue
-    const val = value instanceof FileList ? value[0] : value
-    prevValue.append(name, val)
-    return prevValue
-  }, (new FormData()))
-  // data.append(name, file)
-  return api.post('/upload', data)
+  // solusi 1
+  // const data = Object.entries(form).reduce((prevValue, currentValue) => {
+  //   const [name, value] = currentValue
+  //   const val = value instanceof FileList ? value[0] : value
+  //   prevValue.append(name, val)
+  //   return prevValue
+  // }, (new FormData()))
+  // return api.post('/upload', data)
+
+  // solusi 2
+  const formData = new FormData()
+  formData.append('avatar', form.avatar[0])
+  formData.append('name', form.name)
+  return api.post('/upload', formData)
 }
