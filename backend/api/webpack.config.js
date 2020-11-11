@@ -1,8 +1,9 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import webpack from 'webpack'
+import path from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import { relativeToApi } from '../shared/helper'
 
-module.exports = {
+export default {
   mode: 'development',
   stats: 'errors-only',
   infrastructureLogging: {
@@ -17,7 +18,7 @@ module.exports = {
   entry: {
     bundle: [
       'webpack-hot-middleware/client?__webpack_hmr&reload=true',
-      './backend/index.js',
+      relativeToApi('app', 'index.js'),
     ],
   },
   output: {
@@ -35,7 +36,7 @@ module.exports = {
         },
       },
       {
-        test: /\.yaml$/,
+        test: /\.(yml|yaml)$/,
         use: [
           { loader: 'json-loader' },
           { loader: 'yaml-loader' },
@@ -53,10 +54,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: './backend/index.html',
+      template: relativeToApi('template.html'),
       filename: './index.html',
     }),
-    // new webpack.NoEmitOnErrorsPlugin(),
   ],
   optimization: {
     noEmitOnErrors: true,
@@ -69,6 +69,9 @@ module.exports = {
       '.js',
       '.jsx',
       '.css',
+      '.json',
+      '.yaml',
+      '.yml',
     ],
   },
 }
