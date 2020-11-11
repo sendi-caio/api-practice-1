@@ -14,13 +14,12 @@ import config from './config'
 // import route from './route'
 
 // const cors = Cors()
-console.log(process.env.SERVER_HOST)
 const server = jsonServer.create()
 server.use(fileUpload({
   limits: { fileSize: 50 * 1024 * 1024 },
 }))
 server.use(jsonServer.bodyParser)
-const router = jsonServer.router('./server/db.json')
+const router = jsonServer.router(path.join(__dirname, 'db.json'))
 const middlewares = jsonServer.defaults()
 const swaggerPath = swaggerDist.absolutePath()
 

@@ -2,7 +2,8 @@
   "verbose": true,
   "ignore": [
     "server/db.json",
-    "node_modules"
+    "node_modules",
+    "data"
   ],
   "watch": [
     "server/server.js"

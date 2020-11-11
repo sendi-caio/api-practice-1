@@ -1,16 +1,24 @@
 {
-  "name": "api-practice-1",
+  "name": "react-training-material",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
+  "engines": {
+    "npm": ">=6",
+    "node": ">=12.16.2"
+  },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "api": "nodemon server",
+    "api": "nodemon backend",
+    "api2": "nodemon backend/server.js",
+    "api3": "node backend/server.js",
+    "clean": "echo \"clean-up\"",
     "lint": "eslint --ext .js,.jsx ./src"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@hookform/resolvers": "^1.0.1",
     "axios": "^0.21.0",
@@ -37,10 +45,12 @@
     "@babel/register": "^7.12.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "browser-sync": "^2.26.13",
+    "chokidar": "^3.4.3",
+    "circular-dependency-plugin": "^5.2.2",
+    "copy-webpack-plugin": "^6.3.0",
     "cors": "^2.8.5",
+    "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
-    "dotenv-webpack": "^5.1.0",
     "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
@@ -51,17 +61,21 @@
     "express-fileupload": "^1.2.0",
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
+    "ip": "^1.1.5",
+    "json-loader": "^0.5.7",
     "json-server": "^0.16.2",
     "json-server-auth": "^2.0.2",
     "nodemon": "^2.0.5",
     "rimraf": "^3.0.2",
     "serve-favicon": "^2.5.0",
     "source-map-loader": "^1.1.2",
+    "style-loader": "^2.0.0",
+    "swagger-ui": "^3.36.2",
     "swagger-ui-dist": "^3.36.2",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^4.0.1",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-hot-middleware": "^2.25.0",
+    "yaml-loader": "^0.6.0"
   }
 }

@@ -1,5 +1,7 @@
 /server/uploads/*
-/server/db.json
+/data/*
+/build/*
 /node_modules
 /dist
 !.gitkeep
+.env
