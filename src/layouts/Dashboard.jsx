@@ -6,7 +6,7 @@ function Dashboard(props) {
     <Fragment>
       <Bar />
       <div className="container">
-        { children }
+        {children}
       </div>
     </Fragment>
   )

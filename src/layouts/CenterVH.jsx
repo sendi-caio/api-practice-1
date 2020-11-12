@@ -6,7 +6,7 @@ function CenterVH(props) {
     <div className="container vh-100" style={style}>
       <div className="row vh-100">
         <div className="col align-self-center">
-          { children }
+          {children}
         </div>
       </div>
     </div>
